@@ -1,128 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MMTV News</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 20px;
+    }
+
+    header {
+      background: #3a4968;
+      color: #fff;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: slideDown 1s ease forwards;
+    }
+
+    .MMTV {
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav a {
+      position: relative;
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      padding: 5px 0;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #98caff;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #007BFF;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 60px;
+      color: #2d285f;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease forwards;
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .column {
+      flex: 1;
+      min-width: 280px;
+      animation: fadeSlideUp 0.8s ease forwards;
+    }
+
+    .box {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      height: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeSlideIn 1s ease-out forwards;
+      transition: transform 0.3s ease;
+    }
+
+    .box h3 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .box p {
+      color: #555;
+    }
+
+    .box:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .footer {
+      background-color: #2a3d4e;
+      color: #fff;
+      padding: 40px 20px 20px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-section h3,
+    .footer-section h4 {
+      margin-bottom: 15px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .social-icons i {
+      margin-right: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .subscribe {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    .subscribe input {
+      padding: 8px;
+      border: none;
+      border-radius: 3px 0 0 3px;
+      outline: none;
+      width: 180px;
+    }
+
+    .subscribe button {
+      background-color: #3299f0;
+      border: none;
+      padding: 0 15px;
+      border-radius: 0 3px 3px 0;
+      color: white;
+      cursor: pointer;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #40566b;
+      margin-top: 30px;
+      padding-top: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+    }
+
+    .footer-links a {
+      color: #b0c4d6;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-     <header>
-        <h2 class="MMTV">MMTV</h2>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">World</a>
-            <a href="#">Tech</a>
-            <a href="#">Sports</a>
-            <a href="#">Science</a>
-            <a href="#">Contact</a>
-            <a href="#">Politics</a>
-        </nav>
-    </header>
+  <header>
+    <h2 class="MMTV">MMTV</h2>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">World</a>
+      <a href="#">Tech</a>
+      <a href="#">Sports</a>
+      <a href="#">Science</a>
+      <a href="#">Contact</a>
+      <a href="#">Politics</a>
+    </nav>
+  </header>
 
-
-  <br><br>
-   <h1 style="text-align:center; margin-bottom: 30px; font-size: 50px;">Today's News</h1>
+  <h1>Today's News</h1>
 
   <div class="container">
-    <!-- Column 1 -->
     <div class="column">
       <div class="box">
         <h3>Technology</h3>
-        <p style="color: black;">Apple has recently launched the iPhone 16e, a new addition to the iPhone 16 lineup, featuring AI capabilities at a more affordable price point. The iPhone 16e includes the A18 chip and the Apple C1 cellular modem, and it is built for Apple Intelligence,</p>
-        <img src="technology.jpg" alt="Apple" width="300" height="200">
+        <p>Apple has launched the iPhone 16e with AI features and the A18 chip.</p>
+        <img src="technology.jpg" alt="Apple">
       </div>
       <div class="box">
         <h3>Science</h3>
-        <p style="color: black;">A new $1.5 billion satellite is set to be launched on July 30..</p>
-        <img src="kii danbe.jpg" alt="" width="400px" height="300px">
+        <p>A new $1.5 billion satellite is set to be launched on July 30.</p>
+        <img src="kii danbe.jpg" alt="Satellite">
       </div>
     </div>
 
-    <!-- Column 2 -->
     <div class="column">
       <div class="box">
         <h3>Politics</h3>
-        <p style="color: black;">$322M in weapons approved for Ukraine</p>
-        <br>
-        <img src="politics.webp" alt="" width="400">
+        <p>$322M in weapons approved for Ukraine.</p>
+        <img src="politics.webp" alt="Politics">
       </div>
       <div class="box">
         <h3>World</h3>
-        <p style="color: black;">Gaza has been at risk of famine for months, experts say. Here's why they haven't declared one.</p>
-        <img src="world.jpg" alt="" width="350">
+        <p>Gaza has been at risk of famine for months, experts say.</p>
+        <img src="world.jpg" alt="World News">
       </div>
     </div>
 
-    <!-- Column 3 -->
     <div class="column">
       <div class="box">
         <h3>Sports</h3>
-        <p style="color: black;"> Liverpool have signed a striker for £95m</p>
-        <img src="sports.jpg" alt="" width="300px">
-      </div>
-    
-    </div>
-  </div>
-<br><br>
-
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-section">
-      <h3>Global News Network</h3>
-      <p>Viewers, we are committed to bringing you accurate news as quickly as possible.</p>
-      <div class="social-icons">
-        <i class="fab fa-facebook"></i>
-        <i class="fab fa-twitter"></i>
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-linkedin"></i>
-        <i class="fab fa-youtube"></i>
-      </div>
-    </div>
-
-    <div class="footer-section">
-      <h4>Categories</h4>
-      <ul>
-        <li>World</li>
-        <li>Politics</li>
-        <li>Business</li>
-        <li>Technology</li>
-        <li>Science</li>
-        <li>Health</li>
-        <li>Sports</li>
-      </ul>
-    </div>
-
-    <div class="footer-section">
-      <h4>Company</h4>
-      <ul>
-        <li>About Us</li>
-        <li>Contact</li>
-        <li>Careers</li>
-        <li>Ethics Policy</li>
-      </ul>
-    </div>
-
-    <div class="footer-section">
-      <h4>Subscribe</h4>
-      <p>Get the latest news </p>
-      <div class="subscribe">
-        <input type="email" placeholder="Email address">
-        <button>submit</button>
+        <p>Liverpool have signed a striker for £95m.</p>
+        <img src="sports.jpg" alt="Sports">
       </div>
     </div>
   </div>
 
-  <div class="footer-bottom">
-    <p>© 2025 Global News Network. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Cookie Policy</a>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Global News Network</h3>
+        <p>We bring you accurate news as quickly as possible.</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Categories</h4>
+        <ul>
+          <li>World</li>
+          <li>Politics</li>
+          <li>Business</li>
+          <li>Technology</li>
+          <li>Science</li>
+          <li>Health</li>
+          <li>Sports</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li>About Us</li>
+          <li>Contact</li>
+          <li>Careers</li>
+          <li>Ethics Policy</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Subscribe</h4>
+        <p>Get the latest news</p>
+        <div class="subscribe">
+          <input type="email" placeholder="Email address">
+          <button>Submit</button>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
-
-
+    <div class="footer-bottom">
+      <p>© 2025 Global News Network. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
