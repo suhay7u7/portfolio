@@ -379,11 +379,11 @@
                     <p><strong>Phone:</strong> +123 456 7890</p>
                     <p><strong>Location:</strong> Hargeisa, Somalia</p>
                 </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <input type="text" placeholder="Subject">
-                    <textarea placeholder="Your Message" required></textarea>
+                <form class="contact-form" onsubmit="return validateForm()">
+                    <input type="text" id="name" placeholder="Your Name">
+                    <input type="email" id="email" placeholder="Your Email">
+                    <input type="text" id="subject" placeholder="Subject">
+                    <textarea id="message" placeholder="Your Message"></textarea>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
@@ -396,10 +396,34 @@
             <p>&copy; 2025 Sakaria. All Rights Reserved.</p>
         </div>
     </footer>
+
     <script>
-    let name= sakaria
-    let age= 20
-    let Location= Hargeisa
+        function validateForm() {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let subject = document.getElementById("subject").value.trim();
+            let message = document.getElementById("message").value.trim();
+
+            if (name === "") {
+                alert("Please enter your name");
+                return false;
+            }
+            if (email === "") {
+                alert("Please enter your email");
+                return false;
+            }
+            if (subject === "") {
+                alert("Please enter a subject");
+                return false;
+            }
+            if (message === "") {
+                alert("Please enter your message");
+                return false;
+            }
+
+            alert("Form submitted successfully ✅");
+            return true;
+        }
     </script>
 </body>
 </html>
